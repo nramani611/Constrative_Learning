@@ -14,6 +14,9 @@ class GAT(torch.nn.Module):
         
     def forward(self, x, edge_index):
         #x = F.dropout(x, p=0.6)
+        #print(x.size())
+        #print(edge_index.size())
+        #print(edge_index)
         x = self.conv1(x, edge_index)
         #print(x.size())
         x = torch.flatten(x)
