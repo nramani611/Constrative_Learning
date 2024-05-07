@@ -71,8 +71,11 @@ class EMT_Dataset(Dataset):
     def __len__(self):
         return len(self.node_features)
 
-    def num_features(self):
+    def num_nodes(self):
         return self.node_features[0].shape[0]
 
     def num_classes(self):
         return self.list_outputs[0].shape[0]
+
+    def num_features(self):
+        return self.node_features[0].shape[1]
