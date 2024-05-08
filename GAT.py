@@ -20,6 +20,7 @@ class GAT(torch.nn.Module):
         #print(edge_index.size())
         #print(edge_index)
         x = self.conv1(x, edge_index)
+        x = F.relu(x)
         #print(x.size())
         #x = torch.flatten(x)
         x = self.output_layer(x)
