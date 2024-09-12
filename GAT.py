@@ -15,6 +15,7 @@ class GAT(torch.nn.Module):
         #print(self.conv1.weight.dtype)
 
     def forward(self, x, edge_index, tensor_batch):
+        #batch_size = x.shape[0]//18840
         #x = F.dropout(x, p=0.6)
         #print(x.size())
         #print(edge_index.size())
@@ -24,6 +25,10 @@ class GAT(torch.nn.Module):
         x = self.conv2(x, edge_index)
         x = F.relu(x)
         #print(x.size())
+        #x = torch.reshape(x, (batch_size, 18840, 8))
+        #print(x.size())
+        #x = torch.mean(x, dim=2)
+        #print(x.size())
         #x = torch.flatten(x)
         x = pool.global_mean_pool(x, tensor_batch)
         x = self.output_layer(x)
@@ -32,3 +37,4 @@ class GAT(torch.nn.Module):
         #x = F.dropout(x, p=0.6)
         #x = self.conv2(x, edge_index)
         return x
+ 
